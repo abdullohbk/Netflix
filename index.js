@@ -5,6 +5,9 @@ const moviesWrapper = $(".movies");
 const darkBtn = $(".dark-btn");
 const input = $("#searchinp");
 
+let toastElement = $(".toast");
+let toastMessage = $(".toast-text");
+
 movies.splice(100);
 
 const allMovie = movies.map((el) => {
@@ -47,7 +50,7 @@ function render(data) {
 }
 
 function renderAllmovie(movieList) {
-  moviesWrapper.innerHTML="";
+  moviesWrapper.innerHTML = "";
   if (movieList.length) {
     movieList.forEach((el) => {
       const card = createElement(
@@ -72,9 +75,10 @@ function renderAllmovie(movieList) {
               </ul>
               <div class="flex items-center gap-x-3 btn-wrapper">
                 <button
-                  class="grid place-content-center p-4 border w-12 h-12 rounded-full text-red-700 hover:bg-red-700 hover:text-white duration-300"
+                  data-like=${el.id}
+                  class="grid place-content-center like p-4 border w-12 h-12 rounded-full text-red-700 hover:bg-red-700 hover:text-white duration-300"
                 >
-                  <i class="bi bi-suit-heart-fill"></i>
+                  <i  data-like=${el.id} class="bi like bi-suit-heart-fill"></i>
                 </button>
                 <a
                   href="${el.youtube}"
@@ -127,3 +131,24 @@ input.addEventListener("input", (el) => {
     moviesWrapper.innerHTML = `<h1 class="text-red-600 text-[32px] w-full ">Siz qidirgan malumot topilmadi !!</h1>`;
   }
 });
+
+moviesWrapper.addEventListener("click", (e) => {
+  if (e.target.classList.contains("like")) {
+    let id = e.target.getAttribute("data-like");
+    console.log(id);
+    console.log(e.target);
+    toast("success", `${id} add film`, 2000);
+  }
+});
+
+function toast(type, message, timeout) {
+  toastMessage.innerHTML = message;
+  if (type === "success") {
+    toastElement.classList.remove("hide");
+    toastElement.classList.add("show");
+    setTimeout(() => {
+      toastElement.classList.remove("show");
+      toastElement.classList.add("hide");
+    }, timeout);
+  }
+}

@@ -46,3 +46,50 @@
 header {
   backdrop-filter: blur(10px);
 }
+
+/*------------------ Toaster ---------------------*/
+.toast {
+  position: fixed;
+  z-index: 9999999;
+  width: 300px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: limegreen;
+  padding: 0 20px;
+  right: 10px;
+  top: 70px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  color: #fff;
+}
+
+.toast:hover {
+  background: #000 !important;
+  color: white !important;
+}
+
+.show {
+  transform: translateX(0);
+  animation-name: animateToast;
+  animation-fill-mode: backwards;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+.hide {
+  transform: translateX(400%);
+}
+
+@keyframes animateToast {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+/*------------------ Toaster end ------------------*/

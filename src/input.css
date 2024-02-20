@@ -42,3 +42,7 @@
   height: 120px;
   align-items: center;
 }
+
+header {
+  backdrop-filter: blur(10px);
+}

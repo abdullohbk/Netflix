@@ -60,8 +60,8 @@ function renderAllmovie(movieList) {
             />
             <div class="card-body">
               <h2>${
-                el.title.length > 26
-                  ? el.title.substring(0, 23) + "..."
+                el.title.length > 18
+                  ? el.title.substring(0, 15) + "..."
                   : el.title
               }</h2>
               <ul>
@@ -120,7 +120,6 @@ input.addEventListener("input", (el) => {
   let foundMovis = allMovie.filter((el) =>
     el.title.toLowerCase().includes(searchMovis.toLowerCase())
   );
-  console.log(foundMovis);
 
   if (foundMovis.length) {
     renderAllmovie(foundMovis);

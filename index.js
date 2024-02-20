@@ -3,6 +3,7 @@
 const categoryOption = $("#category");
 const moviesWrapper = $(".movies");
 const darkBtn = $(".dark-btn");
+const input = $("#searchinp");
 
 movies.splice(100);
 
@@ -46,6 +47,7 @@ function render(data) {
 }
 
 function renderAllmovie(movieList) {
+  moviesWrapper.innerHTML="";
   if (movieList.length) {
     movieList.forEach((el) => {
       const card = createElement(
@@ -112,3 +114,17 @@ darkBtn.onclick = function () {
   }
   isDarkMode = !isDarkMode;
 };
+
+input.addEventListener("input", (el) => {
+  let searchMovis = el.target.value;
+  let foundMovis = allMovie.filter((el) =>
+    el.title.toLowerCase().includes(searchMovis.toLowerCase())
+  );
+  console.log(foundMovis);
+
+  if (foundMovis.length) {
+    renderAllmovie(foundMovis);
+  } else {
+    moviesWrapper.innerHTML = `<h1 class="text-red-600 text-[32px] w-full ">Siz qidirgan malumot topilmadi !!</h1>`;
+  }
+});

@@ -54,7 +54,7 @@ function renderAllmovie(movieList) {
         `
        <img
               src="${el.minImg}"
-              alt=""
+              alt="smthimg"
             />
             <div class="card-body">
               <h2>${
